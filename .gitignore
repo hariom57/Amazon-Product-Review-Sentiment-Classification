@@ -1,0 +1,17 @@
+.env
+
+# Virtual Environment
+venv/
+__pycache__/
+
+# Cache
+huggingface_cache/
+
+# System files
+.DS_Store
+.ipynb_checkpoints/
+
+# Data(just in case I use a .csv)
+data/
+
+models/
