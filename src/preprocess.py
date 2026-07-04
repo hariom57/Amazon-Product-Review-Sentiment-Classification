@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from datasets import load_dataset
+# from dotenv import load_dotenv # Uncomment if you need .env file support
 
 # This ensures your data stays out of C: drive
 os.environ['HF_HOME'] = './huggingface_cache'
@@ -11,7 +12,17 @@ def load_and_clean_data():
     # Load a small sample (10k reviews) for quick iteration
     # The 'amazon_polarity' dataset is standard for sentiment tasks
     print("Loading dataset from Hugging Face...")
-    dataset = load_dataset('SetFit/amazon_polarity', split='test[:10000]') 
+    
+    # --- OPTION 1: CLI Authentication (Standard) ---
+    # This works automatically if you have run 'hf auth login' in your terminal, or if you are okay with SLOW download from the public dataset without authentication
+    dataset = load_dataset('SetFit/amazon_polarity', split='test[:10000]')
+    
+    # --- OPTION 2: Environment Variable Authentication (Production) ---
+    # Use this if you are deploying to a server (like AWS/GCP) where you cannot run a CLI login
+    # load_dotenv()
+    # token = os.getenv("HF_TOKEN")
+    # dataset = load_dataset('SetFit/amazon_polarity', split='test[:10000]', token=token)
+    
     df = dataset.to_pandas()
     
     # The dataset has 'content' (review) and 'label' (0 or 1)
