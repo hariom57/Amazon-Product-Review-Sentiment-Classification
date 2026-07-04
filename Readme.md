@@ -36,3 +36,24 @@ source venv/Scripts/activate
 
 3. Install dependencies: `pip install -r requirements.txt`
 4. Run the pipeline: `python src/train.py`
+
+## 📊 Performance Results
+The model was trained on a subset of the Amazon Polarity dataset. Our baseline TF-IDF + Logistic Regression pipeline achieved the following metrics:
+
+| Metric | Score |
+| :--- | :--- |
+| **F1-Score** | **0.8170** |
+
+
+## 🛠 Enhanced Setup Guide
+This project uses Hugging Face datasets. To ensure high-speed downloads and avoid rate limits:
+
+1. **Authentication:** Run the following command in your terminal to authenticate your machine:
+   ```bash
+   hf auth login
+    ```
+
+2. **Environment Configuration:** Ensure `python.terminal.useEnvFile` is enabled in your VS Code settings to properly handle environment variables.
+3. **Execution:**
+* Run the full pipeline: `python src/train.py`
+* Evaluate model performance: `python src/evaluate.py`
